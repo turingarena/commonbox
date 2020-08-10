@@ -129,7 +129,7 @@ result_t commonbox_reset_peak_memory_usage(commonbox_process_t process);
 Resets peak memory usage to the current memory usage.
 Returns a successful value if supported by the sandbox at the time of call.
 
-### Getting the teason for termination
+### Getting the reason for termination
 
 ```c
 char* commonbox_get_exit_reason(commonbox_process_t process)
