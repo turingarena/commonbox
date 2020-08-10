@@ -133,7 +133,7 @@ Returns a successful value if supported by the sandbox at the time of call.
 
 ```c
 char* commonbox_get_exit_reason(commonbox_process_t process);
-void commonbox_force_exit(commonbox_process_t process);
+result_t commonbox_force_exit(commonbox_process_t process);
 ```
 
 Returns a pointer to a NULL-terminated string describing the reason why the process is terminated.
