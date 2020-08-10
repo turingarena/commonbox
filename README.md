@@ -94,10 +94,14 @@ This method is (by design) the only way one can know if the sandboxed process is
 ### Safety limits
 
 ```c
-result_t commonbox_set_safety_timeout(commonbox_process_t process, uint64_t nanos);
-result_t commonbox_set_safety_time_limit(commonbox_process_t process, uint64_t nanos);
-result_t commonbox_set_safety_memory_limit(commonbox_process_t process, uint64_t bytes);
-result_t commonbox_set_safety_output_limit(commonbox_process_t process, uint64_t bytes);
+typedef enum {
+    WALL_TIME,
+    CPU_TIME,
+    MEMORY_SIZE,
+    OUTPUT_SIZE,
+} safety_limit_t;
+
+result_t commonbox_set_safety_limit(commonbox_process_t process, safety_limit_t which, uint64_t value);
 ```
 
 Limit the overall resource usage of the sandbox.
@@ -109,12 +113,18 @@ If supported by the sandbox, the limits can be set during the execution of the p
 In this case, the new limit refers to the resource used *after* the call is performed.
 For example, if the safety time limit is repeatedly set to one second during the execution (and the sandbox supports this pattern of usage), then the overall time usage can grow arbitratily large.
 
+Time is measured in nanoseconds, memory is measured in bytes.
+
 ### Measuring resource usage
 
 ```c
-uint64_t commonbox_get_cumulative_time_usage(commonbox_process_t process, bool upper);
-uint64_t commonbox_get_current_memory_usage(commonbox_process_t process, bool upper);
-uint64_t commonbox_get_peak_memory_usage(commonbox_process_t process, bool upper);
+typedef enum {
+    TIME,
+    CURRENT_MEMORY,
+    PEAK_MEMORY,
+} resource_usage_t;
+
+uint64_t commonbox_get_resource_usage(commonbox_process_t process, resource_usage_t which, bool upper);
 ```
 
 Measure the resources used by the sandboxed process.
