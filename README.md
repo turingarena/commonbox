@@ -24,7 +24,7 @@ The following feature can be obtained with sandbox-specific APIs, but they are n
 ```c
 typedef void* commonbox_process_t;
 
-commonbox_process_t commonbox_create_process_from_executable(char* path)
+commonbox_process_t commonbox_create_process_from_executable(char* path);
 ```
 
 Creates a new sandboxed process from a given executable file.
@@ -132,8 +132,8 @@ Returns a successful value if supported by the sandbox at the time of call.
 ### Getting the reason for termination
 
 ```c
-char* commonbox_get_exit_reason(commonbox_process_t process)
-void commonbox_force_exit(commonbox_process_t process)
+char* commonbox_get_exit_reason(commonbox_process_t process);
+void commonbox_force_exit(commonbox_process_t process);
 ```
 
 Returns a pointer to a NULL-terminated string describing the reason why the process is terminated.
