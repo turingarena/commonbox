@@ -73,8 +73,8 @@ while the input was being writted, the remaining input is simply ignored.*
 
 The input may be kept in a buffer which is not necessarily flushed when the method returns.
 
-A sandbox MUST support at least a single call to `commonbox_write_file_at` at the beginning, before reading any output.
-If a sandbox supports a method with a given generality, then it SHOULD support also methods with lower generality.
+A sandbox should support at least a single call to `commonbox_write_file_at` at the beginning, before reading any output.
+If a sandbox supports a method with a given generality, then it should support also methods with lower generality.
 
 ### Reading the output
 
